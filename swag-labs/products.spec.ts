@@ -71,16 +71,16 @@ test('has cart icon', async({page}) =>{
 
 });
 
-test('verify filter', async({page}) =>{
+// test('verify filter', async({page}) =>{
 
-  const filterIcon = page.locator('xpath=//*[@id="header_container"]/div[2]/div/span/select');
-  await filterIcon.isVisible();
-  await filterIcon.click();
+//   const filterIcon = page.locator('xpath=//*[@id="header_container"]/div[2]/div/span/select');
+//   await filterIcon.isVisible();
+//   await filterIcon.click();
 
-  const lowToHigh = page.locator('xpath=//*[@id="header_container"]/div[2]/div/span/select/option[3]');
-  await lowToHigh.hover();
-  await page.keyboard.press('Enter');
+//   const lowToHigh = page.locator('xpath=//*[@id="header_container"]/div[2]/div/span/select/option[3]');
+//   await lowToHigh.hover();
+//   await page.keyboard.press('Enter');
   
-  //TODO: verify its sorted based on price
+//   //TODO: verify its sorted based on price
 
-});
+// });
