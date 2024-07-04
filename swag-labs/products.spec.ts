@@ -21,7 +21,7 @@ test('hamburger menu options', async({page}) => {
 
   const expectedOptions = ['All Items', 'About', 'Logout', 'Reset App State'];
 
-  await page.locator('.bm-burger-button').click();
+  await page.locator('xpath=//*[@id="react-burger-menu-btn"]').click();
 
   // const menuOptions = page.locator('.menu-item');
   // await expect(menuOptions).toHaveCount(4); //check count
@@ -37,13 +37,50 @@ test('hamburger menu options', async({page}) => {
 });
 
 test('close hamburger menu', async({page}) =>{
-  const hamburgerIcon = page.locator('.bm-burger-button');
+  const hamburgerIcon = page.locator('xpath=//*[@id="react-burger-menu-btn"]');
   await hamburgerIcon.click();
 
-  const closeIcon = page.locator('.bm-cross-button');
-  await expect(closeIcon).toBeVisible();
-  await closeIcon.click();
+  const closeIcon = page.locator('xpath=//*[@id="react-burger-cross-btn"]');
+  await closeIcon.isVisible();
+  closeIcon.click();
 
   await expect(hamburgerIcon).toBeVisible();
+
+});
+
+test('logout', async({page}) => {
+  const hamburgerIcon = page.locator('xpath=//*[@id="react-burger-menu-btn"]');
+  await hamburgerIcon.click();
+
+  const logoutIcon = page.waitForSelector('xpath=//*[@id="logout_sidebar_link"]');
+  (await logoutIcon).click();
+
+  const loginButton = page.getByRole('button', { name: 'Login' });
+  await expect(loginButton).toBeVisible();
+
+});
+
+test('has cart icon', async({page}) =>{
+
+  const cartIcon = page.locator('.shopping_cart_link');
+  await expect(cartIcon).toBeVisible();
+  await cartIcon.click();
+
+  const cartText = page.locator('xpath=//*[@id="header_container"]/div[2]/span');
+  await expect(cartText).toHaveText('Your Cart');
+
+});
+
+test('verify filter', async({page}) =>{
+
+  const filterIcon = page.locator('xpath=//*[@id="header_container"]/div[2]/div/span/select');
+  await filterIcon.isVisible();
+  await filterIcon.click();
+
+  const lowToHigh = page.locator('xpath=//*[@id="header_container"]/div[2]/div/span/select/option[3]');
+  await lowToHigh.hover();
+  await page.keyboard.press('Enter');
+  
+  //TODO: verify its sorted based on price
 
 });
