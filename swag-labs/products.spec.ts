@@ -70,17 +70,3 @@ test('has cart icon', async({page}) =>{
   await expect(cartText).toHaveText('Your Cart');
 
 });
-
-// test('verify filter', async({page}) =>{
-
-//   const filterIcon = page.locator('xpath=//*[@id="header_container"]/div[2]/div/span/select');
-//   await filterIcon.isVisible();
-//   await filterIcon.click();
-
-//   const lowToHigh = page.locator('xpath=//*[@id="header_container"]/div[2]/div/span/select/option[3]');
-//   await lowToHigh.hover();
-//   await page.keyboard.press('Enter');
-  
-//   //TODO: verify its sorted based on price
-
-// });
