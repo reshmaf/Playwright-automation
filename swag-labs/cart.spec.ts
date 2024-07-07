@@ -22,7 +22,7 @@ test('add product to cart', async({page}) =>{
     const cartProduct = page.waitForSelector('xpath=//*[@id="item_4_title_link"]/div');
     expect((await cartProduct).innerText(), await productTitle);
 
-  });
+});
 
 test('checkout', async({page}) =>{
 
@@ -44,4 +44,14 @@ test('checkout', async({page}) =>{
     await page.locator('#continue').click();
 
     expect(await page.locator('#finish').isVisible());
-  })
+});
+
+test('sample checkbox and radio click', async({page}) =>{
+
+    // const checkbox = page.locator('input[type="checkbox"]'); // Example locator
+    // await checkbox.check();
+
+    // const radioButton = page.locator('input[type="radio"][value="option1"]'); // Example locator
+    // await radioButton.check();
+
+});
