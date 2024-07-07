@@ -40,9 +40,8 @@ test('close hamburger menu', async({page}) =>{
   const hamburgerIcon = page.locator('xpath=//*[@id="react-burger-menu-btn"]');
   await hamburgerIcon.click();
 
-  const closeIcon = page.locator('xpath=//*[@id="react-burger-cross-btn"]');
-  await closeIcon.isVisible();
-  closeIcon.click();
+  const closeIcon = await page.waitForSelector('//*[@id="menu_button_container"]/div/div[2]/div[2]/div');
+  await closeIcon.click();
 
   await expect(hamburgerIcon).toBeVisible();
 
@@ -68,5 +67,15 @@ test('has cart icon', async({page}) =>{
 
   const cartText = page.locator('xpath=//*[@id="header_container"]/div[2]/span');
   await expect(cartText).toHaveText('Your Cart');
+
+});
+
+test('filter products', async({page}) =>{
+
+  const dropdown = page.locator('.product_sort_container');
+  await dropdown.selectOption('lohi');
+
+  const product = await page.waitForSelector('xpath=//*[@id="item_2_title_link"]/div');
+  expect(await product.textContent()).toBe('Sauce Labs Onesie');
 
 });
