@@ -34,7 +34,7 @@ test('hamburger menu options', async({page}) => {
     expect(expectedOptions).toContain(await menu.innerText());
   } 
 
-  await page.pdf({ path: 'menu.pdf' })
+  //await page.pdf({ path: 'menu.pdf' })
 });
 
 test('close hamburger menu', async({page}) =>{

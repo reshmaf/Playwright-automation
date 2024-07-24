@@ -1,6 +1,9 @@
 import {test,expect} from '@playwright/test'
+import { chromium } from 'playwright';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async () => {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage();
   await page.goto('/');
 
   await page.getByPlaceholder('Username').fill('standard_user');
@@ -44,7 +47,7 @@ test('checkout', async({page}) =>{
     await page.locator('#continue').click();
 
     expect(await page.locator('#finish').isVisible());
-    
+
     await page.pdf({ path: 'cart.pdf' })
 });
 
