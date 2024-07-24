@@ -1,9 +1,9 @@
 import {test,expect} from '@playwright/test'
-import { chromium } from 'playwright';
+//import { chromium } from 'playwright';
 
-test.beforeEach(async () => {
-  const browser = await chromium.launch({ headless: true });
-  const page = await browser.newPage();
+test.beforeEach(async ({page}) => {
+//   const browser = await chromium.launch({ headless: true });
+//   const page = await browser.newPage();
   await page.goto('/');
 
   await page.getByPlaceholder('Username').fill('standard_user');
