@@ -47,5 +47,8 @@ test('login success', async ({page}) =>{
     await page.getByRole('button', {name: 'Login'}).click();
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 
+    await page.screenshot({ path: 'screenshot1.png' });
+    await page.screenshot({ path: 'screenshot2.png', fullPage: true });
+    await page.locator('#item_4_img_link').screenshot({ path: 'screenshot3.png' });
 });
  
