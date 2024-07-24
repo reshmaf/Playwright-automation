@@ -44,6 +44,8 @@ test('checkout', async({page}) =>{
     await page.locator('#continue').click();
 
     expect(await page.locator('#finish').isVisible());
+    
+    await page.pdf({ path: 'cart.pdf' })
 });
 
 test('sample checkbox and radio click', async({page}) =>{
